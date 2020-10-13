@@ -5,6 +5,7 @@ import static mini2.State.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.graalvm.compiler.nodes.StateSplit;
 
 
 /**

@@ -2,10 +2,6 @@ package mini2;
 
 import static mini2.State.*;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-
 
 /**
  * Utility class containing the key algorithms for moves in the
@@ -30,13 +26,7 @@ public class PearlUtil
    */
   public static void collectPearls(State[] states, int start, int end)
   {
-	  
-	  for(int i = start;i <= end;i++) {
-		  if(states[i] == PEARL) {
-			  states[i] = EMPTY;
-		  }
-	  }
-	  // TODO
+    // TODO
   }
   
 
@@ -55,15 +45,8 @@ public class PearlUtil
    */
   public static int findRightmostMovableBlock(State[] states, int start)
   {
-// TODO
-	  int result = -1;
-	  for(int i = start; i<=0;i--) {
-		  if(states[i] == MOVABLE_POS || states[i] == MOVABLE_NEG) {
-			  result = i;
-			  break;
-		  }
-	  }
-    return result;
+    // TODO
+    return 0;
   }
   
   
@@ -81,15 +64,8 @@ public class PearlUtil
    */
   public static State[] createFromString(String text)
   {
-    ArrayList<State> temp = new ArrayList<State>(); 
-    
-    for(int i = 0; i<text.length();i++) {
-    	if(text.charAt(i) != ' ') {
-    		temp.add(State.getValue(text.charAt(i)));
-    	}
-    }
     // TODO
-    return temp.toArray(new State[] {});
+    return null;
   }
   
   /**
@@ -110,26 +86,7 @@ public class PearlUtil
    */
   public static boolean isValidForMoveBlocks(State[] states)
   {
-	boolean flag = false;
-	if(states.length<2) {
-		return false;
-	}
-    if(states[0] == EMPTY || states[0] == OPEN_GATE || states[0] == PORTAL){
-    	return true;// TODO
-    }
-    for(int i=0;i<states.length;i++) {
-    	if(states[i] == MOVABLE_POS || states[i] == MOVABLE_NEG) {
-    		flag = true;
-    	}
-    	if(i == states.length -1) {
-    		if(flag) {
-    			return State.isBoundary(states[i], true);
-    		}
-    		else {
-    			return State.isBoundary(states[i], false);
-    		}
-    	}
-    }
+    // TODO
     return false;
   }
   
