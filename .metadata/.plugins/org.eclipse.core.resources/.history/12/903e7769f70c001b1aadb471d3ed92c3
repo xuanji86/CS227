@@ -1,0 +1,25 @@
+package lab6;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class LineNumberer {
+	 public static void main(String[] args) throws FileNotFoundException
+	  {
+	    File file = new File("C:\\cs227\\stuff\\story.txt");
+	    Scanner scanner = new Scanner(file);
+	    int lineCount = 1;
+	    int numOfWord = 0;
+	    while (scanner.hasNextLine())
+	    {
+	    	while(scanner.hasNext()) {
+	    		numOfWord++;
+	    		System.out.println("1");
+	    	}
+	    	System.out.print(lineCount + " ");
+	    	System.out.println(numOfWord);
+	    	lineCount += 1;
+	    }
+	    scanner.close();
+	  }
+}

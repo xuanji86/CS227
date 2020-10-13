@@ -1,0 +1,39 @@
+package lab6;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class removeDuplicates {
+	public static void main(String[] args) {
+		String [] genius = {"Einstein", "Newton", "Newton","Copernicus", "Copernicus","Kepler"};
+		for(String s:genius) {
+			System.out.print(s+" ");
+			
+		}
+		System.out.print("\n");
+		String[] result = removeDuplicates(genius);
+		for(String s:result) {
+			System.out.print(s+" ");
+			
+		}
+	}
+	
+	public static String[] removeDuplicates(String[] words) {
+		ArrayList<String> temp = new ArrayList<String>();
+		
+		for(String s:words) {
+			if(!temp.contains(s)) {
+				temp.add(s);
+			}
+		}
+		
+		
+		
+		
+		return temp.toArray(new String[] {});
+		
+	}
+	
+	
+	
+}

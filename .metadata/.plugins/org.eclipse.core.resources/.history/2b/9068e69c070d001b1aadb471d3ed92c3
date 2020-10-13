@@ -1,0 +1,30 @@
+package lab6;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class removeDuplicates {
+	public static void main(String[] args) {
+		String[] test = new String[] {"a","a","b","b","c","c"};
+		System.out.println(test);
+	}
+	
+	public static String[] removeDuplicates(String[] words) {
+		ArrayList<String> temp = new ArrayList<String>();
+		
+		for(String s:words) {
+			if(!temp.contains(s)) {
+				temp.add(s);
+			}
+		}
+		
+		
+		
+		
+		return temp.toArray(new String[] {});
+		
+	}
+	
+	
+	
+}
