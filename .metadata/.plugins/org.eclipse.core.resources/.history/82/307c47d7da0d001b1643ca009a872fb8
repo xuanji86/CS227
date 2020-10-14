@@ -5,6 +5,7 @@ import static mini2.State.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.graalvm.compiler.nodes.StateSplit;
 
 
 
@@ -16,7 +17,6 @@ public class PearlUtil
 {
   private PearlUtil()
   {
-    // disable instantiation
   }
 
   /**
@@ -179,9 +179,6 @@ public class PearlUtil
 	  }
 	  if(states[states.length-1] == SPIKES_ALL) {
 		  newIndex = states.length-1;
-	  }
-	  if(PearlUtil.findRightmostMovableBlock(states, 0) == states.length-1) {
-		  newIndex = states.length-2;
 	  }
     return newIndex;
   }
