@@ -5,8 +5,6 @@ import static mini2.State.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.graalvm.compiler.nodes.StateSplit;
-
 
 
 /**
@@ -168,20 +166,9 @@ public class PearlUtil
    *   the player's new index
    */
   public static int movePlayer(State[] states) 
-  {
-	  
-	  int newIndex = PearlUtil.findRightmostMovableBlock(states, 0);
-	  if(newIndex != 0)newIndex--;
-	  PearlUtil.collectPearls(states, 0, newIndex);
-	  for(int i = 0; i<newIndex; i++) {
-		  if(states[i]==OPEN_GATE) {
-			  states[i] = CLOSED_GATE;
-		  }
-	  }
-	  if(states[states.length-1] == SPIKES_ALL) {
-		  newIndex = states.length-1;
-	  }
-    return newIndex;
+  {    
+    // TODO
+    return 0;
   }
 
   /**
@@ -203,8 +190,7 @@ public class PearlUtil
    */
   public static void moveBlocks(State[] states) 
   {
-	  ArrayList<State> temp = new ArrayList<State>();
-	  // TODO
+    // TODO
   }
 
 
