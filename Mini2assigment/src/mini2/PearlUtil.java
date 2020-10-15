@@ -58,7 +58,7 @@ public class PearlUtil
   {
 // TODO
 	  int result = -1;
-	  for(int i = start; i<=0;i--) {
+	  for(int i = start; i<0 ;i--) {
 		  if(states[i] == MOVABLE_POS || states[i] == MOVABLE_NEG) {
 			  result = i;
 			  break;
@@ -115,22 +115,25 @@ public class PearlUtil
 	if(states.length<2) {
 		return false;
 	}
-    if(states[0] == EMPTY || states[0] == OPEN_GATE || states[0] == PORTAL){
-    	return true;// TODO
+    if(states[0] != EMPTY && states[0] != OPEN_GATE && states[0] != PORTAL){
+    	return false;// TODO
     }
     for(int i=0;i<states.length;i++) {
     	if(states[i] == MOVABLE_POS || states[i] == MOVABLE_NEG) {
     		flag = true;
     	}
-    	if(i == states.length -1) {
-    		if(flag) {
-    			return State.isBoundary(states[i], true);
-    		}
-    		else {
-    			return State.isBoundary(states[i], false);
-    		}
+    }
+    
+    for(int i= 0;i<states.length;i++) {
+    	if(i!= states.length-1 && State.isBoundary(states[i], flag)) {
+    		return false;
+    	}
+    	
+    	if(i == states.length-1 && State.isBoundary(states[i], flag)) {
+    		return true;
     	}
     }
+    	
     return false;
   }
   
@@ -168,22 +171,27 @@ public class PearlUtil
    */
   public static int movePlayer(State[] states) 
   {
-	  
-	  int newIndex = PearlUtil.findRightmostMovableBlock(states, 0);
-	  if(newIndex != 0)newIndex--;
-	  PearlUtil.collectPearls(states, 0, newIndex);
-	  for(int i = 0; i<newIndex; i++) {
-		  if(states[i]==OPEN_GATE) {
+	  int index = 0;
+	  for(int i = 0; i< states.length;i++) {
+		  if(State.isBoundary(states[i], false) == true) {
+			  index = i - 1;
+		  }
+		  if(states[i] == SPIKES_ALL) {
+			  index = i;
+		  }
+	  }
+	  PearlUtil.collectPearls(states, 0, index);
+	  for(int i =0; i<index; i++) {
+		  if(states[i] == OPEN_GATE) {
 			  states[i] = CLOSED_GATE;
 		  }
 	  }
 	  if(states[states.length-1] == SPIKES_ALL) {
-		  newIndex = states.length-1;
+		  index = states.length-1;
 	  }
-	  if(PearlUtil.findRightmostMovableBlock(states, 0) == states.length-1) {
-		  newIndex = states.length-2;
-	  }
-    return newIndex;
+
+
+    return index;
   }
 
   /**
@@ -206,6 +214,29 @@ public class PearlUtil
   public static void moveBlocks(State[] states) 
   {
 	  ArrayList<State> temp = new ArrayList<State>();
+	  boolean flag = false;
+	  for(int i=0; i<states.length-1; i++) {
+		  if(states[i] == MOVABLE_POS || states[i] == MOVABLE_NEG) {
+			  flag = true;
+			  if(states[i] == MOVABLE_POS) {
+				  boolean neturalize = temp.remove(MOVABLE_NEG);
+				  if(!neturalize)temp.add(MOVABLE_POS);
+				  
+			  }else if(states[i] == MOVABLE_NEG) {
+				  boolean neturalize = temp.remove(MOVABLE_POS);
+				  if(!neturalize)temp.add(MOVABLE_NEG);
+			  }
+			  states[i] = EMPTY;
+		  }
+		  else {
+			  if(flag)states[i] = EMPTY;
+		  }
+		  
+	  }
+	  
+	  for(int i = 0;i<temp.size();i++) {
+		  states[states.length-1-(temp.size()-i)] = temp.get(i);
+	  }
 	  // TODO
   }
 

@@ -4,10 +4,13 @@
     <fullyQualifiedTypeName name="plotter.SimulationPlotter"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="plotter.Plotter"/>
     <fullyQualifiedTypeName name="plotter.Polyline"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.awt.Point"/>
+    <fullyQualifiedTypeName name="mini2.State"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="mini2.PearlUtil"/>
+    <fullyQualifiedTypeName name="org.graalvm.compiler.nodes.StateSplit"/>
 </qualifiedTypeNameHistroy>
