@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class removeDuplicates {
 	public static void main(String[] args) {
-		String [] newlist = {"1", "1", "2","2", "3","3"};
+		String [] newlist = {"1", "1", "2","2", "3","3","4","4"};
 		for(String s:newlist) {
 		System.out.print(s + " ");
 
