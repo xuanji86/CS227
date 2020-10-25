@@ -174,5 +174,35 @@ public class Pearls
 	  }
 	return false;
   }
+  
+  public State[] getStateSequence(Direction dir) {
+	  
+	return null;
+	  
+  }
+  
+  public int getNextRow(int row, int col, Direction dir, boolean doPortalJump) {
+	  if(dir != Direction.DOWN && dir != Direction.UP) {
+		  return row;
+	  }
+	  if(doPortalJump) {
+		  return row + getCell(row, col).getRowOffset();
+	  }else if(dir == Direction.RIGHT) {
+		  return col++;
+	  }else if(col-1<0) {
+		  return grid[row].length-1;
+	  }else {
+		  return col--;
+	  }
+	  
+	  
+  }
+  
+  public int getNextColumn(int row, int col, Direction dir, boolean doPortalJump) {
+	  if(dir != Direction.LEFT && dir != Direction.RIGHT) {
+		  return col;
+	  }
+  }
+  
 
 }
