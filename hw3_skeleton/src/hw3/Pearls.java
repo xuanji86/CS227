@@ -118,6 +118,7 @@ public class Pearls
   
   
   public int countPearls(){
+	  
 	int numOfPearls = 0;
 	for(int i = 0; i< grid.length; i++) {
 		for(int j = 0; j<= grid[i].length;j++) {
@@ -129,6 +130,7 @@ public class Pearls
 	return numOfPearls;
 	}
   public int getCurrentRow() {
+	  
 	int currentRow = 0;
 	for(int i = 0; i<grid.length ; i++) {
 		for(int j = 0; j<grid[i].length; j++) {
@@ -142,6 +144,7 @@ public class Pearls
 	  
   }
   public int getCurrentColumn() {
+	  
 	  int currentColumn = 0;
 		for(int i = 0; i<grid.length ; i++) {
 			for(int j = 0; j<grid[i].length; j++) {
@@ -158,6 +161,7 @@ public class Pearls
   }
   
   public boolean won() {
+	  
 	  if(isOver()) {
 		  for(int i = 0; i<grid[i].length; i++) {
 			  for(int j = 0; j<grid[0].length;j++) {
@@ -182,26 +186,77 @@ public class Pearls
   }
   
   public int getNextRow(int row, int col, Direction dir, boolean doPortalJump) {
-	  if(dir != Direction.DOWN && dir != Direction.UP) {
-		  return row;
-	  }
-	  if(doPortalJump) {
-		  return row + getCell(row, col).getRowOffset();
-	  }else if(dir == Direction.RIGHT) {
-		  return col++;
-	  }else if(col-1<0) {
-		  return grid[row].length-1;
+	  int nextRow = 0;
+	  
+	  if(dir == Direction.UP) {
+		  if(doPortalJump == true) {
+			  nextRow = grid[row - 1][col].getRowOffset() + row -1;
+		  }else if(row == 0) {
+			  nextRow = getRows()- 1;
+		  }else {
+			  nextRow = row -1;
+		  }
+	  }else if(dir == Direction.DOWN) {
+		  if(doPortalJump == true) {
+			  nextRow = grid[row+1][col].getRowOffset() + row + 1;
+		  }else if(row == 0) {
+			  nextRow = getRows()-1;
+		  }else {
+			  nextRow = row - 1;
+		  }
+	  }else if(dir == Direction.LEFT) {
+		  if(doPortalJump == true) {
+			  nextRow = grid[row][col-1].getRowOffset() + row;
+		  }else{
+			  nextRow = row; 
+		  }
 	  }else {
-		  return col--;
+		  if(doPortalJump == true) {
+			  nextRow = grid[row][col +1].getRowOffset() + row;
+		  }else {
+			  nextRow = row;
+		  }
 	  }
 	  
+	  return nextRow;
 	  
   }
   
   public int getNextColumn(int row, int col, Direction dir, boolean doPortalJump) {
-	  if(dir != Direction.LEFT && dir != Direction.RIGHT) {
-		  return col;
+	  int nextColumn = 0;
+	 
+	  if(dir == Direction.DOWN) {
+		  if(doPortalJump == true) {
+			  nextColumn = grid[row + 1][col].getColumnOffset() + col;
+		  }else {
+			  nextColumn = col;
+		  }
+	  }else if(dir == Direction.UP) {
+		  if(dir == Direction.UP) {
+			  nextColumn = grid[row-1][col].getColumnOffset() + col;
+		  }else {
+			  nextColumn = col;
+		  }
+	  }else if(dir == Direction.RIGHT) {
+		  if(doPortalJump == true) {
+			  nextColumn = grid[row][col+1].getColumnOffset() + col + 1;
+		  }else if(col == getColumns()-1) {
+			  nextColumn = 0;
+		  }else {
+			  nextColumn = col + 1;
+		  }
+	  }else {
+		  if(dir == Direction.LEFT) {
+			  if(doPortalJump == true) {
+				  nextColumn = grid[row][col-1].getColumnOffset() + col - 1;
+			  }else if(col == 0) {
+				  nextColumn = getColumns() - 1;
+			  }else {
+				  nextColumn = col -1;
+			  }
+		  }
 	  }
+	  return nextColumn;
   }
   
 
