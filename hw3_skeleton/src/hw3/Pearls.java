@@ -1,4 +1,6 @@
 package hw3;
+import java.util.ArrayList;
+
 import api.Cell;
 import api.Direction;
 import api.MoveRecord;
@@ -23,7 +25,8 @@ public class Pearls
    */
   private PearlUtil util;
   
-  private int score = 0;// TODO - any other instance variables you need
+  private int score = 0;
+  private int moveCount = 0;// TODO - any other instance variables you need
   
   
   /**
@@ -180,6 +183,18 @@ public class Pearls
   }
   
   public State[] getStateSequence(Direction dir) {
+	  ArrayList<Cell> newState = new ArrayList<>();
+	  int col = getCurrentColumn();
+	  int row = getCurrentColumn();
+	  newState.add(grid[row][col]);
+	  
+	  while(!State.isBoundary(grid[row][col].getState(), false)) {
+		  int tempRow = getNextRow(row,col,dir,false);
+		  int tempCol = getNextColumn(row,col,dir,false);
+		  row = tempRow;
+		  col = tempCol;
+		  newState.add(grid[row][col]);
+	  }
 	  
 	return null;
 	  
@@ -258,6 +273,11 @@ public class Pearls
 	  }
 	  return nextColumn;
   }
-  
+
+ public int getMoves() {
+	 
+	 return moveCount;
+	 
+ }
 
 }
