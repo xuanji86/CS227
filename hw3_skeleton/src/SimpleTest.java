@@ -25,12 +25,12 @@ public class SimpleTest
       "##.###"};
 
     // getStateSequence
-//    Pearls game = new Pearls(test, new PearlUtil());
-//    StringUtil.printGrid(game);
-//    State[] states = game.getStateSequence(Direction.UP);
-//    System.out.println();
-//    StringUtil.printStateArray(states, 0);
-//    System.out.println();
+    Pearls game = new Pearls(test, new PearlUtil());
+    StringUtil.printGrid(game);
+    State[] states = game.getStateSequence(Direction.UP);
+    System.out.println();
+    StringUtil.printStateArray(states, 0);
+    System.out.println();
 
     String[] testPortals = {
       "######", 
@@ -42,12 +42,12 @@ public class SimpleTest
       "######"};
 
     // getStateSequence with portals
-//    game = new Pearls(testPortals, new PearlUtil());
-//    StringUtil.printGrid(game);
-//    states = game.getStateSequence(Direction.LEFT);
-//    System.out.println();
-//    StringUtil.printStateArray(states, 0);
-//    System.out.println();
+    game = new Pearls(testPortals, new PearlUtil());
+    StringUtil.printGrid(game);
+    states = game.getStateSequence(Direction.LEFT);
+    System.out.println();
+    StringUtil.printStateArray(states, 0);
+    System.out.println();
 
     // examine portal offsets
 //    Cell c = game.getCell(1, 1);
