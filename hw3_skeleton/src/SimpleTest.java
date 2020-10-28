@@ -50,57 +50,57 @@ public class SimpleTest
     System.out.println();
 
     // examine portal offsets
-//    Cell c = game.getCell(1, 1);
-//    System.out.println(c.getRowOffset() + ", " + c.getColumnOffset());
-//    c = game.getCell(4, 2);
-//    System.out.println(c.getRowOffset() + ", " + c.getColumnOffset());
-//    System.out.println();
+    Cell c = game.getCell(1, 1);
+    System.out.println(c.getRowOffset() + ", " + c.getColumnOffset());
+    c = game.getCell(4, 2);
+    System.out.println(c.getRowOffset() + ", " + c.getColumnOffset());
+    System.out.println();
 
     // setStateSequence
-//    game = new Pearls(testPortals, new PearlUtil());
-//    states = StringUtil.createFromString(".xxOO.#");
-//    game.setStateSequence(states, Direction.LEFT, 5);
-//    System.out.println();
-//    StringUtil.printGrid(game);
+    game = new Pearls(testPortals, new PearlUtil());
+    states = StringUtil.createFromString(".xxOO.#");
+    game.setStateSequence(states, Direction.LEFT, 5);
+    System.out.println();
+    StringUtil.printGrid(game);
 
     // Using MoveRecords with movePlayer
-//    PearlUtil util = new PearlUtil();
-//    String s = "..@.o..@.#";
-//    states = StringUtil.createFromString(s);
-//    MoveRecord[] records = new MoveRecord[states.length];
-//    for (int i = 0; i < states.length; ++i)
-//    {
-//      records[i] = new MoveRecord(states[i], i);
-//    }
-//    StringUtil.printStateArray(states, 0);
-//    System.out.println();
-//    util.movePlayer(states, records, Direction.DOWN);
-//    StringUtil.printStateArray(states, 8);
-//    System.out.println();
-//    for (int i = 0; i < records.length; ++i)
-//    {
-//      System.out.println(i + " " + records[i].toString());
-//    }
-//    System.out.println();
+    PearlUtil util = new PearlUtil();
+    String s = "..@.o..@.#";
+    states = StringUtil.createFromString(s);
+    MoveRecord[] records = new MoveRecord[states.length];
+    for (int i = 0; i < states.length; ++i)
+    {
+      records[i] = new MoveRecord(states[i], i);
+    }
+    StringUtil.printStateArray(states, 0);
+    System.out.println();
+    util.movePlayer(states, records, Direction.DOWN);
+    StringUtil.printStateArray(states, 8);
+    System.out.println();
+    for (int i = 0; i < records.length; ++i)
+    {
+      System.out.println(i + " " + records[i].toString());
+    }
+    System.out.println();
     
     // Using MoveRecords with moveBlocks
-//    util = new PearlUtil();
-//    s = "..@.o+@+-+.o";
-//    states = StringUtil.createFromString(s);
-//    records = new MoveRecord[states.length];
-//    for (int i = 0; i < states.length; ++i)
-//    {
-//      records[i] = new MoveRecord(states[i], i);
-//    }
-//    StringUtil.printStateArray(states, 0);
-//    System.out.println();
-//    util.moveBlocks(states, records);
-//    StringUtil.printStateArray(states, 8);
-//    System.out.println();
-//    for (int i = 0; i < records.length; ++i)
-//    {
-//      System.out.println(i + " " + records[i].toString());
-//    }
+    util = new PearlUtil();
+    s = "..@.o+@+-+.o";
+    states = StringUtil.createFromString(s);
+    records = new MoveRecord[states.length];
+    for (int i = 0; i < states.length; ++i)
+    {
+      records[i] = new MoveRecord(states[i], i);
+    }
+    StringUtil.printStateArray(states, 0);
+    System.out.println();
+    util.moveBlocks(states, records);
+    StringUtil.printStateArray(states, 8);
+    System.out.println();
+    for (int i = 0; i < records.length; ++i)
+    {
+      System.out.println(i + " " + records[i].toString());
+    }
 
   }
 

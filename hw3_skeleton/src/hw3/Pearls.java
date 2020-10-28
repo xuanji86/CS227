@@ -116,7 +116,29 @@ public class Pearls
   public MoveRecord[] move(Direction dir)
   {
     // TODO
-    return null;
+	  State[] states = getStateSequence(dir);
+	  MoveRecord[] records = new MoveRecord[states.length];
+	  for(int i = 0;i < records.length;i++) {
+		  records[i] = new MoveRecord(states[i],i);
+	  }
+	  
+	  util.moveBlocks(states, records);
+	  int playerindex = util.movePlayer(states, records, dir);
+	  
+	  setStateSequence(states,dir,playerindex);
+	  
+	  moveCount = playerindex + 1;
+	  for(int i =0;i<=playerindex;i++) {
+		  if(records[i].getState() == State.PEARL && records[i].isDisappeared()) {
+			  score++;
+		  }
+	  }
+	  
+	  
+	  
+	  
+	  
+    return records;
   }
   
   
@@ -231,12 +253,15 @@ public class Pearls
 		  System.out.println(grid[row][col].getState());
 		  System.out.println(states[count]);
 		  grid[row][col].setState(states[count]);
+		  if(count == 0)grid[row][col].setPlayerPresent(false);
+		  if(count == playerIndex)grid[row][col].setPlayerPresent(true);
 		  System.out.println(grid[row][col].getState());
 		  row = tempRow;
 		  col = tempCol;
+		  count ++;
 		  if(grid[row][col].getState() != State.PORTAL) {
 			  //newState.add(grid[row][col]);
-			  count ++;
+			  
 		  }
 		  else {
 			  //newState.add(grid[row][col]);
@@ -265,11 +290,13 @@ public class Pearls
 		  int tempRow = getNextRow(row,col,dir,false);
 		  int tempCol = getNextColumn(row,col,dir,false);
 		  grid[row][col].setState(states[count]);
+		  if(count == playerIndex)grid[row][col].setPlayerPresent(true);
 		  row = tempRow;
 		  col = tempCol;
+		  count ++;
 		  if(grid[row][col].getState() != State.PORTAL) {
 			  //newState.add(grid[row][col]);
-			  count ++;
+			  
 		  }
 		  else {
 			  //newState.add(grid[row][col]);
