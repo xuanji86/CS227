@@ -205,7 +205,7 @@ public class PearlUtil
     int i = 0;
     if(records[i] != null) {
     	records[0].setMovedToIndex(end);
-    	 for(i = 0; i< end; i++){
+    	 for(i = 1; i< end; i++){
     		 if(records[i].getState() == State.PEARL) {
     			records[i].setDisappeared();
     		 }

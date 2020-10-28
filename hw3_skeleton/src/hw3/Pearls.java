@@ -27,6 +27,7 @@ public class Pearls
   
   private int score = 0;
   private int moveCount = 0;// TODO - any other instance variables you need
+  private int currentpearls = 0;
   
   
   /**
@@ -189,16 +190,57 @@ public class Pearls
 	  int row = getCurrentRow();
 	  newState.add(grid[row][col]);
 	  
+	  while(!State.isBoundary(grid[row][col].getState(), false)) {
+		  if(grid[row][col].getState() != State.PORTAL || flag == false) {
+			  int tempRow = getNextRow(row,col,dir,false);
+			  int tempCol = getNextColumn(row,col,dir,false);
+			  row = tempRow;
+			  col = tempCol;
+			  newState.add(grid[row][col]);
+			  flag = true;
+		  }else {
+			  flag = false;
+			  int temp1Row = getNextRow(row,col,dir,true);
+			  int temp1Col = getNextColumn(row,col,dir,true);
+			  row = temp1Row;
+			  col = temp1Col;
+			  newState.add(grid[row][col]);
+		  }
+	  }
+	  
+	  State[] newState2 = new State[newState.size()];
+	  for(int i = 0;i < newState.size(); i++) {
+		  newState2[i]= newState.get(i).getState();
+	  }
+
+	return newState2;
+	  
+  }
+  public void setStateSequence(State[] states, Direction dir, int playerIndex) {
+	  //ArrayList<Cell> newState = new ArrayList<>();
+	  boolean flag = false;
+	  int col = getCurrentColumn();
+	  int row = getCurrentRow();
+	  //newState.add(grid[row][col]);
+	  
+	  int count = 0;
+	  
 	  while(!State.isBoundary(grid[row][col].getState(), false) ) {
 		  int tempRow = getNextRow(row,col,dir,false);
 		  int tempCol = getNextColumn(row,col,dir,false);
+		  System.out.println(grid[row][col].getState());
+		  System.out.println(states[count]);
+		  grid[row][col].setState(states[count]);
+		  System.out.println(grid[row][col].getState());
 		  row = tempRow;
 		  col = tempCol;
 		  if(grid[row][col].getState() != State.PORTAL) {
-			  newState.add(grid[row][col]);
+			  //newState.add(grid[row][col]);
+			  count ++;
 		  }
 		  else {
-			  newState.add(grid[row][col]);
+			  //newState.add(grid[row][col]);
+			  
 			  flag = true;
 			  break;
 		  }
@@ -214,38 +256,40 @@ public class Pearls
 			  }
 		  }
 	  }
-	  newState.add(grid[newrow][newcol]);
+	  //newState.add(grid[newrow][newcol]);
+	  //grid[row][col].setState(states[count]);
 	  row = newrow;
 	  col = newcol;
+	  count ++;
 	  while(!State.isBoundary(grid[row][col].getState(), false) ) {
 		  int tempRow = getNextRow(row,col,dir,false);
 		  int tempCol = getNextColumn(row,col,dir,false);
+		  grid[row][col].setState(states[count]);
 		  row = tempRow;
 		  col = tempCol;
-		  if(grid[row][col].getState() != State.PORTAL)newState.add(grid[row][col]);
+		  if(grid[row][col].getState() != State.PORTAL) {
+			  //newState.add(grid[row][col]);
+			  count ++;
+		  }
 		  else {
-			  newState.add(grid[row][col]);
+			  //newState.add(grid[row][col]);
 			  flag = true;
 			  break;
 		  }
 	  }
 	  
-	  
-	  State[] newState2 = new State[newState.size()];
-	  for(int i = 0;i < newState.size(); i++) {
-		  newState2[i]= newState.get(i).getState();
-	  }
+	  grid[row][col].setState(states[count]);
 
-	return newState2;
+	
 	  
   }
   
   public int getNextRow(int row, int col, Direction dir, boolean doPortalJump) {
-	  int nextRow = 0;
+	  int nextRow = row;
 	  
 	  if(dir == Direction.UP) {
 		  if(doPortalJump == true) {
-			  nextRow = grid[row - 1][col].getRowOffset() + row -1;
+			  nextRow = grid[row][col].getRowOffset() ;
 		  }else if(row == 0) {
 			  nextRow = getRows()- 1;
 		  }else {
@@ -253,23 +297,11 @@ public class Pearls
 		  }
 	  }else if(dir == Direction.DOWN) {
 		  if(doPortalJump == true) {
-			  nextRow = grid[row+1][col].getRowOffset() + row + 1;
-		  }else if(row == 0) {
-			  nextRow = getRows()-1;
+			  nextRow = grid[row][col].getRowOffset();
+		  }else if(row == getRows()-1) {
+			  nextRow = 0;
 		  }else {
-			  nextRow = row - 1;
-		  }
-	  }else if(dir == Direction.LEFT) {
-		  if(doPortalJump == true) {
-			  nextRow = grid[row][col-1].getRowOffset() + row;
-		  }else{
-			  nextRow = row; 
-		  }
-	  }else {
-		  if(doPortalJump == true) {
-			  nextRow = grid[row][col +1].getRowOffset() + row;
-		  }else {
-			  nextRow = row;
+			  nextRow = row + 1;
 		  }
 	  }
 	  
@@ -278,42 +310,27 @@ public class Pearls
   }
   
   public int getNextColumn(int row, int col, Direction dir, boolean doPortalJump) {
-	  int nextColumn = 0;
+	  int nextColumn = col;
 	 
-	  if(dir == Direction.DOWN) {
+	  if(dir == Direction.LEFT) {
 		  if(doPortalJump == true) {
-			  nextColumn = grid[row + 1][col].getColumnOffset() + col;
+			  nextColumn = grid[row][col].getColumnOffset();
+		  }else if(col == 0){
+			  nextColumn = getColumns()-1;
 		  }else {
-			  nextColumn = col;
-		  }
-	  }else if(dir == Direction.UP) {
-		  if(doPortalJump == true) {
-			  nextColumn = grid[row-1][col].getColumnOffset() + col;
-		  }else {
-			  nextColumn = col;
+			  nextColumn = col-1;
 		  }
 	  }else if(dir == Direction.RIGHT) {
 		  if(doPortalJump == true) {
-			  nextColumn = grid[row][col+1].getColumnOffset() + col + 1;
+			  nextColumn = grid[row][col].getColumnOffset();
 		  }else if(col == getColumns()-1) {
 			  nextColumn = 0;
 		  }else {
 			  nextColumn = col + 1;
 		  }
-	  }else {
-		  if(dir == Direction.LEFT) {
-			  if(doPortalJump == true) {
-				  nextColumn = grid[row][col-1].getColumnOffset() + col - 1;
-			  }else if(col == 0) {
-				  nextColumn = getColumns() - 1;
-			  }else {
-				  nextColumn = col -1;
-			  }
-		  }
 	  }
 	  return nextColumn;
   }
-
  public int getMoves() {
 	 
 	 return moveCount;
