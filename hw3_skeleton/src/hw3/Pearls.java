@@ -127,7 +127,7 @@ public class Pearls
 	  
 	  setStateSequence(states,dir,playerindex);
 	  
-	  moveCount = playerindex + 1;
+	  moveCount = playerindex;
 	  for(int i =0;i<=playerindex;i++) {
 		  if(records[i].getState() == State.PEARL && records[i].isDisappeared()) {
 			  score++;
