@@ -9,9 +9,10 @@
     <fullyQualifiedTypeName name="plotter.Polyline"/>
     <fullyQualifiedTypeName name="java.awt.Point"/>
     <fullyQualifiedTypeName name="mini2.State"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="mini2.PearlUtil"/>
     <fullyQualifiedTypeName name="org.graalvm.compiler.nodes.StateSplit"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="mini3.IntExpression"/>
 </qualifiedTypeNameHistroy>
