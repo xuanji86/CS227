@@ -48,4 +48,12 @@ public class IntListSorted extends IntList
   {
     this.add(newItem);
   }
+  
+  public int getMedian() {
+		int median = 0;
+		int mid = size()/2;
+		
+		return get(mid);
+		
+	}
 }

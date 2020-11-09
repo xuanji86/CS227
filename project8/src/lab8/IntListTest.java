@@ -10,5 +10,6 @@ public class IntListTest {
 		System.out.println("Size: " + list.size());
 	    System.out.println("Min: " + list.getMinimum());
 	    System.out.println("Max: " + list.getMaximum());
+	    System.out.println("Median: " + list.getMedian());
 	}
 }
