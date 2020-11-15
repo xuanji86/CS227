@@ -3,6 +3,10 @@ package hw4;
 import api.IStatefulComponent;
 import api.Pin;
 
+/**
+ * @author Anji Xu
+ *
+ */
 public class Counter extends AbstractComponent implements IStatefulComponent {
 
 	private int currentState;
@@ -18,14 +22,20 @@ public class Counter extends AbstractComponent implements IStatefulComponent {
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
+		if(isEnabled() && inputsValid()){
+			invalidateOutputs();
+			currentState++;
+			// TODO Auto-generated method stub
+		}
 		
 	}
 
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		for(int i = 0; i< outputs().length;i++){
+			outputs()[i].set(0);// TODO Auto-generated method stub
+		}
 		
 	}
 
