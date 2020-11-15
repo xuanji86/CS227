@@ -9,23 +9,23 @@ import java.util.GregorianCalendar;
  * If overdue, the fine is 3.00 plus .50 per day,
  * up to a maximum equal to the item's replacement cost.
  */
-public class Movie implements Item
+public class Movie extends libraryItem
 {
   /**
    * Title of this item.
-   */
-  private String title;
-  
-  /**
-   * Due date for this item.  This value is null when not checked out.
-   */
-  private Date dueDate;
-  
-  /**
-   * Patron to whom this item is checked out.  This value is null when not checked out.
-   */
-  private Patron checkedOutTo;
-  
+//   */
+//  private String title;
+//  
+//  /**
+//   * Due date for this item.  This value is null when not checked out.
+//   */
+//  private Date dueDate;
+//  
+//  /**
+//   * Patron to whom this item is checked out.  This value is null when not checked out.
+//   */
+//  private Patron checkedOutTo;
+//  
   /**
    * Replacement cost for this DVD.
    */
@@ -47,9 +47,8 @@ public class Movie implements Item
    */
   public Movie(String givenTitle, double givenCost, int givenDuration)
   {
-    title = givenTitle;
-    dueDate = null;
-    checkedOutTo = null;
+    super(givenTitle,null,null);
+
     replacementCost = givenCost;
     duration = givenDuration;
   }
@@ -99,11 +98,11 @@ public class Movie implements Item
     }
   }
 
-  @Override
-  public void renew(Date now)
-  {
-    // cannot be renewed
-  }
+//  @Override
+//  public void renew(Date now)
+//  {
+//    // cannot be renewed
+//  }
 
   @Override
   public double getFine(Date now)
@@ -126,43 +125,43 @@ public class Movie implements Item
     }
   }
 
-  @Override
-  public boolean isOverdue(Date now)
-  {
-    if (!isCheckedOut())
-    {
-      return false;
-    }
-    return now.after(dueDate);
-  }
-
-  @Override
-  public int compareTo(Item other)
-  {
-    return title.compareTo(other.getTitle());
-  }
-
-  @Override
-  public String getTitle()
-  {
-   return title;
-  }
-
-  @Override
-  public boolean isCheckedOut()
-  {
-    return dueDate != null;
-  }
-
-  @Override
-  public Date getDueDate()
-  {
-    return dueDate;
-  }
-
-  @Override
-  public Patron getPatron()
-  {
-    return checkedOutTo;
-  }
+//  @Override
+//  public boolean isOverdue(Date now)
+//  {
+//    if (!isCheckedOut())
+//    {
+//      return false;
+//    }
+//    return now.after(dueDate);
+//  }
+//
+//  @Override
+//  public int compareTo(Item other)
+//  {
+//    return title.compareTo(other.getTitle());
+//  }
+//
+//  @Override
+//  public String getTitle()
+//  {
+//   return title;
+//  }
+//
+//  @Override
+//  public boolean isCheckedOut()
+//  {
+//    return dueDate != null;
+//  }
+//
+//  @Override
+//  public Date getDueDate()
+//  {
+//    return dueDate;
+//  }
+//
+//  @Override
+//  public Patron getPatron()
+//  {
+//    return checkedOutTo;
+//  }
 }
