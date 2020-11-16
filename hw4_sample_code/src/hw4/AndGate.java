@@ -7,11 +7,13 @@ public class AndGate extends AbstractComponent{
 	}
 	@Override
 	public void propagate() {
-		int newValue = 0;
-		if(inputs()[0].getValue() == 1 && inputs()[1].getValue() ==1){
-			newValue = 1;
+		if (inputsValid()) {
+			int newValue = 0;
+			if(inputs()[0].getValue() == 1 && inputs()[1].getValue() ==1){
+				newValue = 1;
+			}
+			outputs()[0].set(newValue);
 		}
-		outputs()[0].set(newValue);
 	}
 
 }

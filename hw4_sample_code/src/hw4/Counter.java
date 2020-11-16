@@ -25,7 +25,16 @@ public class Counter extends AbstractComponent implements IStatefulComponent {
 		if(isEnabled() && inputsValid()){
 			invalidateOutputs();
 			currentState++;
-			// TODO Auto-generated method stub
+			String binary = Integer.toBinaryString(currentState);
+
+            char c = ' ';
+            int num = 0;
+
+            for (int i = 0; i < Math.min(binary.length(), size); i++) {
+                c = binary.charAt(binary.length() - i - 1);
+                num = Character.getNumericValue(c);
+                outputs()[i].set(num);
+            }
 		}
 		
 	}
@@ -34,7 +43,7 @@ public class Counter extends AbstractComponent implements IStatefulComponent {
 	@Override
 	public void clear() {
 		for(int i = 0; i< outputs().length;i++){
-			outputs()[i].set(0);// TODO Auto-generated method stub
+			outputs()[i].set(0);
 		}
 		
 	}
@@ -43,7 +52,6 @@ public class Counter extends AbstractComponent implements IStatefulComponent {
 	@Override
 	public void setEnabled(boolean enabled) {
 		isEnabled = enabled;
-		
 	}
 	
 	public boolean isEnabled() {
