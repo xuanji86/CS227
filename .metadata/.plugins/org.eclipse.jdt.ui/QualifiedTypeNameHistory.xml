@@ -13,10 +13,10 @@
     <fullyQualifiedTypeName name="org.graalvm.compiler.nodes.StateSplit"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="mini3.IntExpression"/>
     <fullyQualifiedTypeName name="lab8.IntListSorted"/>
-    <fullyQualifiedTypeName name="api.IComponent"/>
     <fullyQualifiedTypeName name="api.Pin"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="api.IComponent"/>
     <fullyQualifiedTypeName name="api.IStatefulComponent"/>
 </qualifiedTypeNameHistroy>
