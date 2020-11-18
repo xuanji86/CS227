@@ -17,15 +17,16 @@ public class Counter extends AbstractComponent implements IStatefulComponent {
 		super(0, size);
 		this.currentState = 0;
 		this.size = size;
+		clear();
 	}
 
 
 	@Override
 	public void tick() {
-		if(isEnabled() && inputsValid()){
+		if(isEnabled == true && inputsValid()){
 			invalidateOutputs();
 			currentState++;
-			String binary = Integer.toBinaryString(currentState);
+            String binary = Integer.toBinaryString(currentState);
 
             char c = ' ';
             int num = 0;
@@ -54,8 +55,4 @@ public class Counter extends AbstractComponent implements IStatefulComponent {
 		isEnabled = enabled;
 	}
 	
-	public boolean isEnabled() {
-		return isEnabled;
-	}
-
 }
